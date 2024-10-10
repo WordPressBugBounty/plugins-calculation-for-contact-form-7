@@ -6,3 +6,9 @@ function CALCULATIONCF7_load_front_script_style() {
     wp_enqueue_style( 'CALCULATIONCF7-front-css', CALCULATIONCF7_PLUGIN_DIR . '/assets/css/front.css', false, '2.0.0' );
     wp_enqueue_script( 'CALCULATIONCF7-front-js', CALCULATIONCF7_PLUGIN_DIR . '/assets/js/front.js', array('jquery'), '2.0.0', true );
 }
+
+// Enqueue scripts and styles for the admin area
+add_action( 'admin_enqueue_scripts', 'CALCULATIONCF7_load_admin_script_style' );
+function CALCULATIONCF7_load_admin_script_style() {
+    wp_enqueue_script( 'CALCULATIONCF7-admin-js', CALCULATIONCF7_PLUGIN_DIR . '/assets/js/admin.js', array('jquery'), '2.0.0', true );
+}

@@ -30,7 +30,7 @@ include_once('main/resources/calculationcf7-installation-require.php');
 include_once('main/resources/calculationcf7-load-js-css.php');     
 include_once('main/resources/calculationcf7-language.php');     
 
-function CALCULATIONCF7_support_and_rating_links( $links_array, $plugin_file_name, $plugin_data, $status ) {
+function CALCULATIONCF7P_support_and_rating_links( $links_array, $plugin_file_name, $plugin_data, $status ) {
     if ($plugin_file_name !== plugin_basename(__FILE__)) {
       return $links_array;
     }
@@ -41,7 +41,7 @@ function CALCULATIONCF7_support_and_rating_links( $links_array, $plugin_file_nam
     return $links_array;
 
 }
-add_filter( 'plugin_row_meta', 'CALCULATIONCF7_support_and_rating_links', 10, 4 );
+add_filter( 'plugin_row_meta', 'CALCULATIONCF7P_support_and_rating_links', 10, 4 );
 
 add_action('init','remove_cf7_enum_rule_functioncallback');
 function remove_cf7_enum_rule_functioncallback(){

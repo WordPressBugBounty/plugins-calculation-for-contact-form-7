@@ -62,45 +62,88 @@ function CALCULATIONCF7_calculator_tag_generator_content( $contact_form, $args =
 							</label>
 						</th>
 						<td>
-								<?php 
-								   $calculationcf7_tag = array();
-									foreach ($contact_form_tags as $contact_form_tag) {
-										if ( $contact_form_tag['type'] == 'number' || $contact_form_tag['type'] == 'number*' || $contact_form_tag['type'] == 'radio' || $contact_form_tag['type'] == 'select' || $contact_form_tag['type'] == 'select*' || $contact_form_tag['type'] == 'text*' || $contact_form_tag['type'] == 'text' || $contact_form_tag['type'] == 'checkbox' || $contact_form_tag['type'] == 'checkbox*' || $contact_form_tag['type'] == 'rangeslider' || $contact_form_tag['type'] == 'rangeslider*' || $contact_form_tag['type'] == 'calculator'){
-											$calculationcf7_tag[] = $contact_form_tag['name'];
-										}
-									} 
-								?>
+							<?php 
+							   $calculationcf7_tag = array();
+								foreach ($contact_form_tags as $contact_form_tag) {
+									if ( $contact_form_tag['type'] == 'number' || $contact_form_tag['type'] == 'number*' || $contact_form_tag['type'] == 'radio' || $contact_form_tag['type'] == 'select' || $contact_form_tag['type'] == 'select*' || $contact_form_tag['type'] == 'text*' || $contact_form_tag['type'] == 'text' || $contact_form_tag['type'] == 'checkbox' || $contact_form_tag['type'] == 'checkbox*' || $contact_form_tag['type'] == 'rangeslider' || $contact_form_tag['type'] == 'rangeslider*' || $contact_form_tag['type'] == 'calculator'){
+										$calculationcf7_tag[] = $contact_form_tag['name'];
+									}
+								} 
+							?>
 							<p><span><strong><u>Field Name</u></strong></span><br>	
 							<?php echo esc_attr(implode(' , ', $calculationcf7_tag)); ?></p>
 							<textarea rows="3" class="large-text code" name="values" id="<?php echo esc_attr( $calculator_args['content'] . '-values' ); ?>"></textarea> <br>
 							<?php _e( 'Ex: sqrt(number-12) % number-13', 'contact-form-7' ); ?> <br>
 							<?php _e( 'Ex: radio-108 + checkbox-345 + ( number-667 + number-24 ) / 2', 'contact-form-7' ); ?> <br>
-							<?php _e( 'Ex: checkbox-77 ** number-24', 'contact-form-7' ); ?>
+							<?php _e( 'Ex: checkbox-77 ** number-24', 'contact-form-7' ); ?><br>
+
+							 <strong> <?php _e( 'Note:If you Add selectbox and radio button then field value add like this "$20--20" ', 'contact-form-7' ); ?> </strong>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-hide_field' ); ?>"><?php echo esc_html( __( 'Hide Field', 'contact-form-7' ) ); ?>
+							</label>
+						</th>
+						<td>
+							<input type="checkbox" name="hide_field" class="option" id="<?php echo esc_attr( $calculator_args['content'] . '-hide_field' ); ?>" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				<strong class="calculationcf7_pro_msg"><?php echo __('Below Options Are Only Avaliable In ','star-rating-for-contact-form-7');?><a href="https://www.plugin999.com/plugin/calculation-for-contact-form-7/" target="_blank">Pro Version</a></strong>
+			</p>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Prefix Left', 'contact-form-7' ) ); ?>
+							</label>
+						</th>
+						<td>
+							<input type="text" name="prefix_left" class="prefix_left oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Prefix' ); ?>" disabled />
 						</td>
 					</tr>
 
 					<tr>
 						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Prefix', 'contact-form-7' ) ); ?>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Prefix Right', 'contact-form-7' ) ); ?></label>
+						</th>
+						<td>
+							<input type="text" name="prefix_right" class="prefix_right oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Prefix' ); ?>" disabled/>
+						</td>
+					</tr>
+
+
+					<tr>
+						<th>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-thousand_sep' ); ?>"><?php echo esc_html( __( 'Thousand separator', 'contact-form-7' ) ); ?>
 							</label>
 						</th>
 						<td>
-							<input type="text" name="calculationcf7_Prefix" class="Prefixvalue oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Prefix' ); ?>" disabled/>
-							<label>Required Pro Version for add Prefix. <a href="https://www.plugin999.com/plugin/calculation-for-contact-form-7/" target="_blank">Click Here To Get Pro Version</a></label>
-
+							<input type="text" name="thousand_sep" class="thousand_sep oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-thousand_sep' ); ?>" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-decimal' ); ?>"><?php echo esc_html( __( 'Number of decimals', 'contact-form-7' ) ); ?>
+							</label>
+						</th>
+						<td>
+							<input type="number" name="decimal_number" class="decimal_number oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-decimal_number' ); ?>"  min="0" disabled/>
 						</td>
 					</tr>
 
 					<tr>
 						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-Precision' ); ?>"><?php echo esc_html( __( 'Result Precision (digits after decimal point)', 'contact-form-7' ) ); ?>
+							<label for="<?php echo esc_attr( $calculator_args['content'] . '-decimal_sep' ); ?>"><?php echo esc_html( __( 'Decimals Separator', 'contact-form-7' ) ); ?>
 							</label>
 						</th>
 						<td>
-							<input type="number" name="calculationcf7_Precision" class="Precision oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Precision' ); ?>"  min="0"/>
+							<input type="text" name="decimal_sep" class="decimal_sep  option" id="<?php echo esc_attr( $calculator_args['content'] . '-decimal_sep' ); ?>"  min="0" disabled/>
 						</td>
 					</tr>
-
 				</tbody>
 			</table>
 		</fieldset>
@@ -161,15 +204,29 @@ function CALCULATIONCF7_calculator_tag_handler_in_cf7_form( $tag ) {
 
 	$calculator_atts['class'] .= " calculationcf7-total";
 
+
 	$calculator_atts['value'] = 0;
-
-	if(!empty($tag->get_option( 'calculationcf7_Prefix' )[0])){
-		$calculator_atts['prefix'] = "";
+	if($tag->has_option("hide_field")){
+		$calculator_atts['class'] .= " calculationcf7-hide";
+	}
+	
+	/*if(!empty($tag->get_option( 'prefix_left' )[0])){
+		$calculator_atts['prefix_left'] = $tag->get_option( 'prefix_left' )[0];
+	}
+	if(!empty($tag->get_option( 'prefix_right' )[0])){
+		$calculator_atts['prefix_right'] = $tag->get_option( 'prefix_right' )[0];
 	}
 
-	if(!empty($tag->get_option( 'calculationcf7_Precision' )[0])){
-		$calculator_atts['precision'] = $tag->get_option( 'calculationcf7_Precision' )[0];
+	if(!empty($tag->get_option( 'thousand_sep' )[0])){
+		$calculator_atts['thousand_sep'] = $tag->get_option( 'thousand_sep' )[0];
 	}
+	if(!empty($tag->get_option( 'decimal_number' )[0])){
+		$calculator_atts['decimal_number'] = $tag->get_option( 'decimal_number' )[0];
+	}
+	if(!empty($tag->get_option( 'decimal_sep' )[0])){
+		$calculator_atts['decimal_sep'] = $tag->get_option( 'decimal_sep' )[0];
+	}*/
+	
 
 	$calculator_atts = wpcf7_format_atts( $calculator_atts );
 
