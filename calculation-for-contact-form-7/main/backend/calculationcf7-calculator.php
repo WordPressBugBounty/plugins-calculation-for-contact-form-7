@@ -10,7 +10,7 @@ add_action( 'wpcf7_admin_init', 'CALCULATIONCF7_add_calculator_tag_generator_cf7
 function CALCULATIONCF7_add_calculator_tag_generator_cf7_form() {
 	$tag_generator = WPCF7_TagGenerator::get_instance();
 	$tag_generator->add( 'calculator', __( 'calculator', 'contact-form-7' ),
-		'CALCULATIONCF7_calculator_tag_generator_content' );
+		'CALCULATIONCF7_calculator_tag_generator_content',array('version'=>2)  );
 }
 
 
@@ -21,144 +21,82 @@ function CALCULATIONCF7_calculator_tag_generator_content( $contact_form, $args =
 	$calculator_args = wp_parse_args( $args, array() );
 	$calculator_type = 'calculator';
 	?>
+	<header class="description-box">
+		<h3>calculator  form tag generator</h3>
+	</header> 
 	<div class="control-box">
+		<input type="hidden" data-tag-part="basetype" value="calculator" >
 		<fieldset>
-			<table class="form-table">
-				<tbody>
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $calculator_args['content'] . '-name' ); ?>" />
-						</td>
-					</tr>
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Id attribute', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="id" class="idvalue oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>" />
-						</td>
-					</tr>
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-class' ); ?>"><?php echo esc_html( __( 'Class attribute', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="class" class="classvalue oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-class' ); ?>" />
-						</td>
-					</tr>
-					
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-values' ); ?>"><?php echo esc_html( __( 'Formulas', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<?php 
-							   $calculationcf7_tag = array();
-								foreach ($contact_form_tags as $contact_form_tag) {
-									if ( $contact_form_tag['type'] == 'number' || $contact_form_tag['type'] == 'number*' || $contact_form_tag['type'] == 'radio' || $contact_form_tag['type'] == 'select' || $contact_form_tag['type'] == 'select*' || $contact_form_tag['type'] == 'text*' || $contact_form_tag['type'] == 'text' || $contact_form_tag['type'] == 'checkbox' || $contact_form_tag['type'] == 'checkbox*' || $contact_form_tag['type'] == 'rangeslider' || $contact_form_tag['type'] == 'rangeslider*' || $contact_form_tag['type'] == 'calculator'){
-										$calculationcf7_tag[] = $contact_form_tag['name'];
-									}
-								} 
-							?>
-							<p><span><strong><u>Field Name</u></strong></span><br>	
-							<?php echo esc_attr(implode(' , ', $calculationcf7_tag)); ?></p>
-							<textarea rows="3" class="large-text code" name="values" id="<?php echo esc_attr( $calculator_args['content'] . '-values' ); ?>"></textarea> <br>
-							<?php _e( 'Ex: sqrt(number-12) % number-13', 'contact-form-7' ); ?> <br>
-							<?php _e( 'Ex: radio-108 + checkbox-345 + ( number-667 + number-24 ) / 2', 'contact-form-7' ); ?> <br>
-							<?php _e( 'Ex: checkbox-77 ** number-24', 'contact-form-7' ); ?><br>
-
-							 <strong> <?php _e( 'Note:If you Add selectbox and radio button then field value add like this "$20--20" ', 'contact-form-7' ); ?> </strong>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-hide_field' ); ?>"><?php echo esc_html( __( 'Hide Field', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="checkbox" name="hide_field" class="option" id="<?php echo esc_attr( $calculator_args['content'] . '-hide_field' ); ?>" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<p>
-				<strong class="calculationcf7_pro_msg"><?php echo __('Below Options Are Only Avaliable In ','star-rating-for-contact-form-7');?><a href="https://www.plugin999.com/plugin/calculation-for-contact-form-7/" target="_blank">Pro Version</a></strong>
-			</p>
-			<table class="form-table">
-				<tbody>
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Prefix Left', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="prefix_left" class="prefix_left oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Prefix' ); ?>" disabled />
-						</td>
-					</tr>
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Prefix Right', 'contact-form-7' ) ); ?></label>
-						</th>
-						<td>
-							<input type="text" name="prefix_right" class="prefix_right oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-Prefix' ); ?>" disabled/>
-						</td>
-					</tr>
-
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-thousand_sep' ); ?>"><?php echo esc_html( __( 'Thousand separator', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="thousand_sep" class="thousand_sep oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-thousand_sep' ); ?>" disabled/>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-decimal' ); ?>"><?php echo esc_html( __( 'Number of decimals', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="number" name="decimal_number" class="decimal_number oneline option" id="<?php echo esc_attr( $calculator_args['content'] . '-decimal_number' ); ?>"  min="0" disabled/>
-						</td>
-					</tr>
-
-					<tr>
-						<th>
-							<label for="<?php echo esc_attr( $calculator_args['content'] . '-decimal_sep' ); ?>"><?php echo esc_html( __( 'Decimals Separator', 'contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="decimal_sep" class="decimal_sep  option" id="<?php echo esc_attr( $calculator_args['content'] . '-decimal_sep' ); ?>"  min="0" disabled/>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<legend>Name</legend>
+			<input type="text" data-tag-part="name" pattern="[A-Za-z][A-Za-z0-9_\-]*">
+		</fieldset>
+		<fieldset>
+			<legend>Id</legend>
+			<input type="text" data-tag-part="option" data-tag-option="id:" pattern="[A-Za-z][A-Za-z0-9_\-]*">
+		</fieldset>
+		<fieldset>
+			<legend>Class</legend>
+			<input type="text" data-tag-part="option" data-tag-option="class:" pattern="[A-Za-z0-9_\-\s]*" >
+		</fieldset>
+		<fieldset>
+			<legend>Formulas</legend>
+			<?php 
+				   $calculationcf7_tag = array();
+					foreach ($contact_form_tags as $contact_form_tag) {
+						if ( $contact_form_tag['type'] == 'number' || $contact_form_tag['type'] == 'number*' || $contact_form_tag['type'] == 'radio' || $contact_form_tag['type'] == 'select' || $contact_form_tag['type'] == 'select*' || $contact_form_tag['type'] == 'text*' || $contact_form_tag['type'] == 'text' || $contact_form_tag['type'] == 'checkbox' || $contact_form_tag['type'] == 'checkbox*' || $contact_form_tag['type'] == 'rangeslider' || $contact_form_tag['type'] == 'rangeslider*' || $contact_form_tag['type'] == 'calculator'){
+							$calculationcf7_tag[] = $contact_form_tag['name'];
+						}
+					} 
+				?>
+			<p><span><strong><u>Field Name</u></strong></span><br>	
+			<?php echo esc_attr(implode(' , ', $calculationcf7_tag)); ?></p>
+			<textarea rows="3"  data-tag-part="value" ></textarea> <br>
+			<code>
+			<?php _e( 'Ex: sqrt(number-12) % number-13', 'contact-form-7' ); ?> <br>
+			<?php _e( 'Ex: radio-108 + checkbox-345 + ( number-667 + number-24 ) / 2', 'contact-form-7' ); ?> <br>
+			<?php _e( 'Ex: checkbox-77 ** number-24', 'contact-form-7' ); ?>
+			</code><br>
+			<strong> <?php _e( 'Note:If you Add selectbox and radio button then field value add like this "$20--20" ', 'contact-form-7' ); ?> </strong>
+		</fieldset>
+		<fieldset>
+			<legend>Hide Field</legend>
+			<input type="checkbox" data-tag-part="option" data-tag-option="hide_field:" >
+		</fieldset>
+		<p>
+			<strong class="calculationcf7_pro_msg"><?php echo __('Below Options Are Only Avaliable In ','star-rating-for-contact-form-7');?><a href="https://www.plugin999.com/plugin/calculation-for-contact-form-7/" target="_blank">Pro Version</a></strong>
+		</p>
+		<fieldset>
+			<legend>Prefix Left</legend>
+			<input type="text" data-tag-part="option" data-tag-option="prefix_left:" disabled>
+		</fieldset>
+		<fieldset>
+			<legend>Prefix Right</legend>
+			<input type="text" data-tag-part="option" data-tag-option="prefix_right:" disabled>
+		</fieldset>
+		<fieldset>
+			<legend>Thousand separator</legend>
+			<input type="text" data-tag-part="option" data-tag-option="thousand_sep:" disabled>
+		</fieldset>
+		<fieldset>
+			<legend>Number of decimals</legend>
+			<input type="number" data-tag-part="option" data-tag-option="decimal_number:" disabled>
+		</fieldset>
+		<fieldset>
+			<legend>Decimals Separator</legend>
+			<input type="text" data-tag-part="option" data-tag-option="decimal_sep:" disabled>
 		</fieldset>
 	</div>
-
 	<div class="insert-box">
-		<input type="text" name="<?php echo esc_attr($calculator_type); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
-
-		<div class="submitbox">
-		<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
-		</div>
-
-		<br class="clear" />
-
-		<p class="description mail-tag"><label for="<?php echo esc_attr( $calculator_args['content'] . '-mailtag' ); ?>"><?php echo sprintf( esc_html( __( "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab.", 'contact-form-7' ) ), '<strong><span class="mail-tag"></span></strong>' ); ?><input type="text" class="mail-tag code hidden" readonly="readonly" id="<?php echo esc_attr( $calculator_args['content'] . '-mailtag' ); ?>" /></label></p>
+		<div class="flex-container">
+			<input type="text" class="code" readonly="readonly" onfocus="this.select();" data-tag-part="tag">
+			<div class="submitbox">
+				<input type="button" class="button button-primary insert-tag" value="Insert Tag" />
+			</div>
+    	</div/>
+		<p class="mail-tag-tip">
+			<label for="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>"><?php echo sprintf( esc_html( __( "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab.", 'calculation-for-contact-form-7' ) ), '<strong><span class="mail-tag"></span></strong>' ); ?>
+		    </label>
+		</p>
 	</div>
 	<?php
 }

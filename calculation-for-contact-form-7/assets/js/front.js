@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 	const cal_if = (x) => {
 	    // Use case-insensitive regex to match IF statements
-	    const re = /IF\(([^()]*)\)/gi; // Added 'i' flag for case insensitivity
+	    const re = /IF\(([^()]*|\((?:[^()]*|\([^()]*\))*\))*\)/gi; // Added 'i' flag for case insensitivity
 
 	    // Replace outermost IF statements
 	    x = x.replace(re, (match) => {
@@ -268,7 +268,7 @@ jQuery(document).ready(function() {
 					    return Math.ceil(eval(expression));  // Apply ceil to the expression
 					});
 
-					neqf = neqf.replace(/ROUND\(([^)]+)\)/gi, function(match, expression) {
+					neqf = neqf.replace(/ROUND\((.*)\)/, function(match, expression) {
 					    return Math.round(eval(expression));
 					});
 
