@@ -153,6 +153,7 @@ jQuery(document).ready(function() {
        	})
 
        	reg = calculationcf7s_duplicates_type(reg);
+       	reg.sort((a, b) => b.length - a.length);
        	//console.log(reg);
        	var all_tag = new RegExp( reg.join("|"));
        	jQuery( ".calculationcf7-total" ).each(function( index ) {
@@ -264,7 +265,7 @@ jQuery(document).ready(function() {
 				var fresult = ''; 
 			    
 
-				    neqf = neqf.replace(/CEIL\(([^)]+)\)/gi, function(match, expression) {
+				    neqf = neqf.replace(/CEIL\((.*)\)/, function(match, expression) {
 					    return Math.ceil(eval(expression));  // Apply ceil to the expression
 					});
 
@@ -272,7 +273,7 @@ jQuery(document).ready(function() {
 					    return Math.round(eval(expression));
 					});
 
-					neqf = neqf.replace(/FLOOR\(([^)]+)\)/gi, function(match, expression) {
+					neqf = neqf.replace(/FLOOR\((.*)\)/, function(match, expression) {
 					    return Math.floor(eval(expression));
 					});
 
