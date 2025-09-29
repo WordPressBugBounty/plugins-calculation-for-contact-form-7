@@ -1,7 +1,7 @@
 === Calculation For Contact Form 7 ===
 Tags: calculation contact form 7 , calcualtor contact form 7 , contact form 7 calculation
 Requires at least: 5.5
-Tested up to: 6.8
+Tested up to: 6.8.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -24,10 +24,9 @@ This plugin in you can be using any kind of calculators like weight calculation,
 * You can add a prefix for calculator value.
 * Choice digits after the decimal point for calculator value.
 * Maths Equation
-* Conditional Logic
-* Multiple Total field
 * Hide Field 
-* Custom Label Radio, Select Box, Checkbox
+* Multiple Total field (Pro)
+* Custom Label Radio, Select Box, Checkbox (Pro)
 * Prefix Left (Pro)
 * Prefix Right (Pro)
 * Formating Decimal (Pro)
@@ -73,18 +72,6 @@ Get Me Explain How to Setup form
 <h4>Division</h4>
 <pre><code>
 [calculator calculator-4 "text-1 / text-2"]
-</code></pre>
-
-<h4>If Condition</h4>
-If text-1 is smaller than text-2 than value come 10 otherwise 5
-<pre><code>
-[calculator calculator-5 "if(text-1 < text-2, 10 , 5)"]
-</code></pre>
-
-<h4>If Else Condition </h4>
-If text-1 is smaller than text-2 than value come 10 otherwise , If text1 smaller than 2 than 1 otherwise 2 (Inner If Must Keep into <strong>( )</strong>)
-<pre><code>
-[calculator calculator-5 "if(text1 < text2,(if(text1 < 2, (1), (2))), 5)"]
 </code></pre>
 
 <h4>MOD Function</h4>

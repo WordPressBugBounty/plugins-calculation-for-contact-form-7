@@ -56,7 +56,7 @@ function CALCULATIONCF7_calculator_tag_generator_content( $contact_form, $args =
 			<?php _e( 'Ex: radio-108 + checkbox-345 + ( number-667 + number-24 ) / 2', 'contact-form-7' ); ?> <br>
 			<?php _e( 'Ex: checkbox-77 ** number-24', 'contact-form-7' ); ?>
 			</code><br>
-			<strong> <?php _e( 'Note:If you Add selectbox and radio button then field value add like this "$20--20" ', 'contact-form-7' ); ?> </strong>
+			<strong> <?php _e( 'Note:If you Add selectbox and radio button then field value add like this "$20--20" ', 'contact-form-7' ); ?> <?php echo __('This Options Is Only Avaliable In ','star-rating-for-contact-form-7');?><a href="https://www.plugin999.com/plugin/calculation-for-contact-form-7/" target="_blank">Pro Version</a> </strong>
 		</fieldset>
 		<fieldset>
 			<legend>Hide Field</legend>
